@@ -2,7 +2,8 @@ from src.service.records import find_all_records, export_csv
 
 def get_all_records():
     try:
-        pokemons = find_all_records()
-        export_csv(pokemons)
+        records = find_all_records()
+        export_csv(records)
     except Exception as ex:
+        print(ex)
         return ex #gerar log do error

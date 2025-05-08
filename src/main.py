@@ -1,7 +1,7 @@
-from src.controller.records import get_all_records
+from src.controller.controller_records import get_all_records, get_records_by_title, get_records_by_category
 
-def scraper_all_records():
+def main():
    get_all_records()
 
 if __name__ == '__main__':
-    scraper_all_records()
+    main()

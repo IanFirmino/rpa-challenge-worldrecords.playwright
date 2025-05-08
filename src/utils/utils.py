@@ -1,4 +1,10 @@
+import os
+import csv
+import sys
+import logging
+from datetime import datetime
 from fake_useragent import UserAgent
+from logging.handlers import RotatingFileHandler
 
 def get_proxy():
     proxies = [
@@ -9,3 +15,43 @@ def get_proxy():
 def get_user_agent():
     ua = UserAgent()
     return ua.chrome
+
+def create_logger(log_name: str):
+    try:
+        path = "C:/GUINNESS_WORLD_RECORDS_LOGS"
+        os.makedirs(path, exist_ok=True)
+        log_file = os.path.join(path, f'{log_name}.log')
+
+        rotating_handler = RotatingFileHandler(
+            filename=log_file, mode='a', maxBytes=5 * 1024 * 1024, backupCount=0, encoding='utf-8'
+        )
+
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(message)s',
+            handlers=[logging.StreamHandler(), rotating_handler]
+        )
+    except:
+        path = os.path.dirname(sys.executable)
+        log_file = os.path.join(path, f'{log_name}.log')
+
+        rotating_handler = RotatingFileHandler(
+            filename=log_file, mode='a', maxBytes=5 * 1024 * 1024, encoding='utf-8'
+        )
+
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(message)s',
+            handlers=[logging.StreamHandler(), rotating_handler]
+        )
+
+def export_csv(obj_list):
+    fieldnames = obj_list[0].__dict__.keys()
+    filename = datetime.now().strftime("%y%m%d%H%M%S") + ".csv"
+    filepath = os.path.join("/tmp", filename)
+    with open(filepath, mode='w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for obj in obj_list:
+            writer.writerow(obj.__dict__)
+    return filepath

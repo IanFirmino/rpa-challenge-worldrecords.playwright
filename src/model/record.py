@@ -8,6 +8,10 @@ class Record:
         self.description = description
         self.category = category
 
+class RecordError:
+    def __init__(self, err):
+        self.err = err
+
 def obj_to_record(obj):
     return Record(
         title=obj.get('Titulo'),

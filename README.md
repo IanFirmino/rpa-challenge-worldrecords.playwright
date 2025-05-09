@@ -1,29 +1,61 @@
 # WebScraping do site do Livro dos recordes!
 
-Essa captura de dados foi realiza com o framework **Playwright** seguindo os princípios da arquitetura limpa com exportação dos dados para CSV e logs de erros.
+Essa captura de dados foi realiza com o framework **Playwright** seguindo os princípios da arquitetura limpa com exportação dos dados para CSV e caso necessário logs de erros.
+
+A extração dos dados é do site https://www.guinnessworldrecords.com.br/records/showcase
+e é capturado as principais informações por Record.
 
 ## Arquitetura
 |                 |                           						|
 |-----------------|-------------------------------------------------|
-|/main			  |`Arquivo inicial`              				   	|
-|/model           |`Entidades do sistema`          				   	|
-|/controller      |`Caso de uso do sistema`            			   	|
-|/service         |`Funções de auxilio para o controlador`          |
-|/utils           |`Utilitários e funções de auxilio para o serviço`|
+|/main			  |`Arquivo principal para execução dos comandos via terminal`              				   	|
+|/model           |`Entidades e modelos da aplicação`          				   	|
+|/controller      |`Casos de uso que coordenam a lógica da aplicação`            			   	|
+|/service         |`Funções responsáveis por interações e extração dos dados`          |
+|/utils           |`Funções auxiliares (log, formatação, helpers, etc.)`|
 
 
 ## Instalação
 
+1. Clone o repositório:
+   ```
+   git clone https://github.com/IanFirmino/rpa-challenge-worldrecords.webscraping.git
+   cd projeto
+   ```
+
+2. Crie o ambiente virtual:
+   ```
+   python -m venv venv
+   ```
+
+3. Ative o ambiente:
+     ```
+     venv\Scripts\activate
+     ```
+
+
+4. Instale as dependências:
+   ```
+   pip install -r requirements.txt
+   ```
+
+
 - Criar o ambiente virtual `python -m venv venv`
 - Instalar as dependências `pip install -r requirements.txt`
 
+
 ## Execução
 
-- ``` python main.py get_all ```
-Execute a captura de todos os recordes.
+Utilize o `main.py` com o comando abaixo para realizar a captura dos dados:
 
-- ``` python main.py get_by_category --category animais ```
-Execute a captura dos recordes que tem a categoria "animais".
+### Filtrar por categoria:
+```
+python -m src.main get_by_category --category "Maratonas"
+python -m src.main get_by_category --category "Aprendendo"
+python -m src.main get_by_category --category "Moda e maquiagem"
+```
 
-- ``` python main.py get_by_title --title veneno ```
-Execute a captura dos recordes que tem o titulo "veneno".
+## Exportações
+
+Todos os resultados extraídos são salvos automaticamente na pasta `/exportations` com o nome da categoria/título e a data/hora da execução.
+Eventuais erros também são gerados na `/exportations`.

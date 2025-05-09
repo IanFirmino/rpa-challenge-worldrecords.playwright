@@ -19,7 +19,7 @@ e é capturado as principais informações por Record.
 
 1. Clone o repositório:
    ```
-   git clone https://github.com/IanFirmino/rpa-challenge-worldrecords.webscraping.git
+   git clone https://github.com/IanFirmino/rpa-challenge-worldrecords.playwright.git
    cd projeto
    ```
 

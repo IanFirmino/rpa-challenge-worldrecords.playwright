@@ -39,11 +39,6 @@ e é capturado as principais informações por Record.
    pip install -r requirements.txt
    ```
 
-
-- Criar o ambiente virtual `python -m venv venv`
-- Instalar as dependências `pip install -r requirements.txt`
-
-
 ## Execução
 
 Utilize o `main.py` com o comando abaixo para realizar a captura dos dados:

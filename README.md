@@ -8,7 +8,7 @@ e é capturado as principais informações por Record.
 ## Arquitetura
 |                 |                           						|
 |-----------------|-------------------------------------------------|
-|/main			  |`Arquivo principal para execução dos comandos via terminal`              				   	|
+|.main			  |`Arquivo principal para execução dos comandos via terminal`              				   	|
 |/model           |`Entidades e modelos da aplicação`          				   	|
 |/controller      |`Casos de uso que coordenam a lógica da aplicação`            			   	|
 |/service         |`Funções responsáveis por interações e extração dos dados`          |
